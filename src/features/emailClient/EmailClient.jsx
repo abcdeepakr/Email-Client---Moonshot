@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {fetchEmailReducer, emailState, updateSelectedEmail} from './EmailSlice';
+import EmailCard from './components/emailCard'
 // import styles from './Counter.module.css';
 
 export default function Counter() {
@@ -9,16 +10,15 @@ export default function Counter() {
   useEffect(()=>{
     dispatch(fetchEmailReducer())
   },[])
+  
    return (
-    <div>
+    <React.Fragment>
         {emailData.emails ? emailData.emails.map((email) => {
             return (
-            <div style={{"border":"2px solid red"}} key={email.id} onClick={()=>dispatch(updateSelectedEmail(email.id))}>
-                {email.short_description}
-            </div>
+                <EmailCard key={email.id}  email={email}/>
             )
         }) : null}
       
-    </div>
+    </React.Fragment>
   );
 }
