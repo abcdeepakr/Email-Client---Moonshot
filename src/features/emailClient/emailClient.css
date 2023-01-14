@@ -93,7 +93,7 @@ body{
     flex-direction: column;
     font-size: 1rem;
     position:sticky;
-    top:20px;
+    top:50px;
 }
 .master-email__header{
     display: flex;
