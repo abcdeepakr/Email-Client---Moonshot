@@ -6,7 +6,9 @@ const initialState = {
     status: '',
     count:0,
     selectedFilter:'',
-    selectedEmailBody:{}
+    selectedEmailBody:{},
+    filteredEmailIds:[],
+    favouriteEmailsIds:[]
 }
 
 export const fetchEmailReducer = createAsyncThunk(
@@ -21,7 +23,6 @@ export const fetchEmailBodyReducer = createAsyncThunk(
     'emails/body/id',
     async (id) => {
       const response = await fetchEmailBody(id);
-      console.log(response)
       // The value we return becomes the `fulfilled` action payload
       return response;
     }
@@ -36,6 +37,12 @@ export const emailSlice = createSlice({
       },
       updateSelectedFilter: (state, action) =>{
         state.selectedFilter = action.payload
+      },
+      updateFilteredIds: (state, action) =>{
+        state.filteredEmailIds = action.payload
+      },
+      updateFavouriteEmails: (state, action) =>{
+        state.favouriteEmailsIds = action.payload
       }
     },
     // The `extraReducers` field lets the slice handle actions defined elsewhere,
@@ -54,6 +61,9 @@ export const emailSlice = createSlice({
         state.status = 'idle';
         state.emails = action.payload.list;
         state.count = action.payload.total;
+
+        let emailId = action.payload.list.map(email => email.id)
+        state.filteredEmailIds = emailId
       })
 
       .addCase(fetchEmailBodyReducer.pending, (state) => {
@@ -69,6 +79,6 @@ export const emailSlice = createSlice({
       })
   },
   })
-  export const { updateSelectedEmail, updateSelectedFilter } = emailSlice.actions;
+  export const { updateSelectedEmail, updateSelectedFilter, updateFilteredIds, updateFavouriteEmails } = emailSlice.actions;
   export const emailState = (state) => state.emails;
   export default emailSlice.reducer;

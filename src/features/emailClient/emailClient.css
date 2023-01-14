@@ -12,10 +12,9 @@ body{
     text-align: left;
     font-size: 1.2rem;
     margin-top: 10px;
-    cursor: pointer;
     position: sticky;
     top: 0;
-    background-color: var(--read-background);
+    background-color: white;
     z-index: 100;
     padding: 10px;
 }
@@ -25,7 +24,7 @@ body{
     margin: 0% 5px;
     border-radius: 15px;
     font-size: 1rem;
-    
+    cursor: pointer;
 }
 .filter-label--active{
     border: 1px solid var(--border);
@@ -121,10 +120,9 @@ body{
     font-size: 1rem;
 }
 .master-email-section__favourite{
-    
     float: right;
     display: inline-flex;
-    height: 30px;
+    min-height: 30px;
     width: auto;
     margin: auto;
     
@@ -134,10 +132,22 @@ body{
     border: 1px solid var(--border);
     border-radius: 20px;
     color: var(--read-background);
-    width: auto;
+    cursor: pointer;
+}
+.master-email-section__favourite--button-active{
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--read-background);
+    cursor: pointer;
+    background-color: var(--text);
 }
 
 .master-section-body{
     margin: 0% 10%;
     text-align: left;
+}
+.favourite-label{
+    color: var(--accent);
+    font-weight: 500;
+    margin-left: 10px;
 }

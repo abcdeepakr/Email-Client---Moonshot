@@ -17,11 +17,9 @@ function MasterEmail() {
     selectedEmail = selectedEmail[0]
   }
   useEffect(()=>{
-    console.log('fetching selected email body')
     if(selectedEmail != null){
         dispatch(fetchEmailBodyReducer(selectedEmail.id))
     }
-    console.log(emailData)
   },[emailData.selectedEmailId])
   
   return (

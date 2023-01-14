@@ -23,11 +23,9 @@ function EmailCard(props) {
             <p>From: <span className='text-bold'>{email.from.name} {`<${email.from.email}>`}</span></p>
             <p>Subject: <span className='text-bold'>{email.subject}</span></p>
             <p className='email-description'>{truncateText(email.short_description)}</p>
-            <p>{parseUnixTimeStamp(email.date)}</p>
+            <p>{parseUnixTimeStamp(email.date)} <span className='favourite-label'>{emailData.favouriteEmailsIds.indexOf(email.id) !==-1 ? "Favourite": ""}</span></p>
           </div>
         </div>
-
-
     </React.Fragment>
   )
 }
