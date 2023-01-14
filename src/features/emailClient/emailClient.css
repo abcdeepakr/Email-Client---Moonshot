@@ -151,3 +151,28 @@ body{
     font-weight: 500;
     margin-left: 10px;
 }
+
+@media only screen and (max-width: 950px) {
+    .hideMaster{
+        display: none;
+    }
+    .hideSlave{
+        display: none;
+    }
+    .masterFullWidth{
+        width: 100%;
+    }
+    .hide-back-button{
+        display: none;
+    }
+    .back-button{
+        padding: 5px 20px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background-color: var(--read-background);
+        text-align: left;
+    }
+    .email-card-container:has(div):has(.selected){
+        width: 100%;
+    }
+  }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { emailState, updateSelectedEmail } from '../EmailSlice';
+import { emailState, updateSelectedEmail, showCardHandler } from '../EmailSlice';
 import { parseUnixTimeStamp, truncateText } from '../EmailAPI';
 import '../emailClient.css'
 function EmailCard(props) {
@@ -12,6 +12,11 @@ function EmailCard(props) {
     emailCardClasses.push("selected")
   }
 
+  const updateCardClickHandler = (id) =>{
+
+    dispatch(updateSelectedEmail(email.id))
+    dispatch(showCardHandler(false))
+  }
   return (
     <React.Fragment>
       
@@ -19,7 +24,7 @@ function EmailCard(props) {
           <div className='profile-avatar'>
             <span>{email.from.name[0].toUpperCase()}</span>
           </div>
-          <div className='email-card-text' onClick={() => dispatch(updateSelectedEmail(email.id))}>
+          <div className='email-card-text' onClick={() => updateCardClickHandler(email.id)}>
             <p>From: <span className='text-bold'>{email.from.name} {`<${email.from.email}>`}</span></p>
             <p>Subject: <span className='text-bold'>{email.subject}</span></p>
             <p className='email-description'>{truncateText(email.short_description)}</p>

@@ -9,7 +9,6 @@ import FilterTab from './components/filterTab';
 export default function EmailClient() {
     const emailData = useSelector(emailState);
     const dispatch = useDispatch();
-    const [filteredArray, setFilteredArray] = useState([])
     useEffect(() => {
         // Fetch all emails when a page is loaded for the first time
         dispatch(fetchEmailReducer())
@@ -84,17 +83,15 @@ export default function EmailClient() {
     }
     return (
         <React.Fragment>
-            
             <FilterTab />
             <section data-section-id="email-layout-container" className='emails-layout'>
-                <section className='email-card-container'>
+                <section className={`email-card-container ${emailData.showCards ? "":"hideSlave"}`}>
                     {emailData.emails ? emailData.emails.map((email) => {
                         if(emailData.filteredEmailIds.indexOf(email.id) !== -1){
                             return (
                                 <EmailCard key={email.id} email={email} />
                             )
                         }
-                        
                     }) : null}
                 </section>
                 {emailData.selectedEmailId === null ? null : <MasterEmail />}

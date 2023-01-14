@@ -8,7 +8,6 @@ import { fetchEmailBodyReducer, emailState } from '../EmailSlice';
 
 
 function MasterEmail() {
-  
   const emailData = useSelector(emailState);
   const dispatch = useDispatch();
   let selectedEmail = null
@@ -21,11 +20,12 @@ function MasterEmail() {
         dispatch(fetchEmailBodyReducer(selectedEmail.id))
     }
   },[emailData.selectedEmailId])
-  
+  console.log(emailData)
   return (
-    <section data-section-id="master-email-section" className='master-email-section'>
+    <section data-section-id="master-email-section" className={`master-email-section ${emailData.showCards ? "hideMaster":"masterFullWidth"}`}>
         {selectedEmail === null ? null : 
             <React.Fragment>
+                
                 <MasterBodyHeader emailMeta ={selectedEmail} />
                 <MasterBody emailBody = {emailData.selectedEmailBody} />
             </React.Fragment>

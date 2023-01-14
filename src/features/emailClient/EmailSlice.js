@@ -3,12 +3,11 @@ import {fetchEmails, fetchEmailBody} from './EmailAPI'
 const initialState = {
     emails: [],
     selectedEmailId: null,
-    status: '',
-    count:0,
     selectedFilter:'',
     selectedEmailBody:{},
     filteredEmailIds:[],
-    favouriteEmailsIds:[]
+    favouriteEmailsIds:[],
+    showCards:true
 }
 
 export const fetchEmailReducer = createAsyncThunk(
@@ -43,6 +42,9 @@ export const emailSlice = createSlice({
       },
       updateFavouriteEmails: (state, action) =>{
         state.favouriteEmailsIds = action.payload
+      },
+      showCardHandler: (state, action) =>{
+        state.showCards = action.payload
       }
     },
     // The `extraReducers` field lets the slice handle actions defined elsewhere,
@@ -50,18 +52,14 @@ export const emailSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchEmailReducer.pending, (state) => {
-        state.status = 'loading';
+        // TODO add loader
       })
       .addCase(fetchEmailReducer.rejected, (state) => {
-        state.status = 'idle';
+        // TODO Add error message
       })
 
       .addCase(fetchEmailReducer.fulfilled, (state, action) => {
-        
-        state.status = 'idle';
         state.emails = action.payload.list;
-        state.count = action.payload.total;
-
         let emailId = action.payload.list.map(email => email.id)
         state.filteredEmailIds = emailId
       })
@@ -79,6 +77,6 @@ export const emailSlice = createSlice({
       })
   },
   })
-  export const { updateSelectedEmail, updateSelectedFilter, updateFilteredIds, updateFavouriteEmails } = emailSlice.actions;
+  export const { updateSelectedEmail, updateSelectedFilter, updateFilteredIds, updateFavouriteEmails, showCardHandler } = emailSlice.actions;
   export const emailState = (state) => state.emails;
   export default emailSlice.reducer;
