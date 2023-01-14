@@ -38,3 +38,4 @@ Following files are crucial to set up our state management
 
 
 Browser localstorage is used to manage the status of emails, like read, unread, favourite.
+
