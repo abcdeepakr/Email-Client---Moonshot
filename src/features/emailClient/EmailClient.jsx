@@ -96,7 +96,7 @@ export default function EmailClient() {
                 </section>
                 {emailData.selectedEmailId === null ? null : <MasterEmail />}
             </section>
-            <button onClick={() => resetLocalStorage()}>Reset local storage</button>
+            <button style={{"position": "relative","bottom":"0px"}} onClick={() => resetLocalStorage()}>Reset local storage</button>
         </React.Fragment>
     );
 }

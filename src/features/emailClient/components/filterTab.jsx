@@ -14,8 +14,12 @@ function FilterTab() {
                 <span className={`filter-label ${emailData.selectedFilter ==="read" ? "filter-label--active" : ""}`} onClick={()=> dispatch(updateSelectedFilter("read"))}>Read</span>
                 <span className={`filter-label ${emailData.selectedFilter ==="favourites" ? "filter-label--active" : ""}`} onClick={()=> dispatch(updateSelectedFilter("favourites"))}>Favourites</span>
             </span>
+            <br />
+            <button 
+                className={`back-button ${emailData.showCards ? "hide-back-button":""}`} 
+                onClick={()=>{dispatch(showCardHandler(true))}}>Back</button>
         </div>
-        <button className={`back-button ${emailData.showCards ? "hide-back-button":""}`} onClick={()=>{dispatch(showCardHandler(true))}}>back</button>
+        
     </React.Fragment>
   )
 }

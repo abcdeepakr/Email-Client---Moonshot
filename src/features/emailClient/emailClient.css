@@ -17,6 +17,8 @@ body{
     background-color: white;
     z-index: 100;
     padding: 10px;
+    font-weight: 500;
+    margin-left: 4%;
 }
 
 .filter-label{
@@ -151,7 +153,9 @@ body{
     font-weight: 500;
     margin-left: 10px;
 }
-
+.back-button{
+    display: none;
+}
 @media only screen and (max-width: 950px) {
     .hideMaster{
         display: none;
@@ -168,11 +172,16 @@ body{
     .back-button{
         padding: 5px 20px;
         border-radius: 10px;
-        border: 1px solid var(--border);
+        border: 2px solid var(--border);
         background-color: var(--read-background);
-        text-align: left;
+        margin-top: 30px;
+        margin-left: 2%;
+        display: block;
     }
     .email-card-container:has(div):has(.selected){
         width: 100%;
+    }
+    .filters-tab{
+        margin-left: 2%;
     }
   }
