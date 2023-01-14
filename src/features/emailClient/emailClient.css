@@ -127,7 +127,7 @@ body{
     min-height: 30px;
     width: auto;
     margin: auto;
-    
+    padding: 10px;
 }
 .master-email-section__favourite--button{
     background-color: var(--accent);
@@ -183,5 +183,8 @@ body{
     }
     .filters-tab{
         margin-left: 2%;
+    }
+    .master-email-section__subject{
+        font-size: 1rem;
     }
   }
