@@ -1,29 +1,33 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import {emailState, updateSelectedEmail} from '../EmailSlice';
+import { emailState, updateSelectedEmail } from '../EmailSlice';
+import { parseUnixTimeStamp, truncateText } from '../EmailAPI';
 import '../emailClient.css'
 function EmailCard(props) {
-const dispatch = useDispatch();
-const emailData = useSelector(emailState);
-let email = props.email
-let emailCardClasses = ["email-card"]
-if(email.id === emailData.selectedEmailId){
+  const dispatch = useDispatch();
+  const emailData = useSelector(emailState);
+  let email = props.email
+  let emailCardClasses = ["email-card"]
+  if (email.id === emailData.selectedEmailId) {
     emailCardClasses.push("selected")
-}
+  }
+
   return (
     <React.Fragment>
-    <div className={emailCardClasses.join(" ")}>
-    <div className='profile-picture'>
-        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" />
-    </div>
-        <div className='email-card-text' onClick={()=>dispatch(updateSelectedEmail(email.id))}>
-            <p>From: <b>{email.from.name} {`<${email.from.email}>`}</b></p>
-            <p>Subject: <b>{email.subject}</b></p>
-            <p>{email.short_description}</p>
-            <p>10/01/2022 12:24PM</p>
+      
+        <div className={emailCardClasses.join(" ")}>
+          <div className='profile-avatar'>
+            <span>{email.from.name[0].toUpperCase()}</span>
+          </div>
+          <div className='email-card-text' onClick={() => dispatch(updateSelectedEmail(email.id))}>
+            <p>From: <span className='text-bold'>{email.from.name} {`<${email.from.email}>`}</span></p>
+            <p>Subject: <span className='text-bold'>{email.subject}</span></p>
+            <p className='email-description'>{truncateText(email.short_description)}</p>
+            <p>{parseUnixTimeStamp(email.date)}</p>
+          </div>
         </div>
-    </div>
-    
+
+
     </React.Fragment>
   )
 }
